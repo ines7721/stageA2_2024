@@ -1,0 +1,28 @@
+iimport time
+import board
+from analogio import AnalogIn
+
+analog_in_U = AnalogIn(board.A10) 
+analog_in_U2 = AnalogIn(board.A9)   
+R1 = 26930.0
+
+def get_voltage(pin):
+    return (pin.value * 3.3) / 65536
+
+while True:
+    U = get_voltage(analog_in_U) 
+    print("Tension U: ", U)
+    U2 = get_voltage(analog_in_U2)  
+    print("Tension U2: ", U2)
+    
+    U1 = U - U2  
+    print("Tension U1: ", U1)
+    
+    if U1 != 0 :
+        R2 = (U2 * R1) / (U - U2)
+        print("Résistance calculée: ", R2)
+    else:
+        print("Erreur")
+    
+    time.sleep(1)
+

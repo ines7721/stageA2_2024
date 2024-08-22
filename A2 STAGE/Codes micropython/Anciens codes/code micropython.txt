@@ -1,0 +1,35 @@
+import time
+from machine import ADC, Pin
+
+# Initialize ADCs
+analog_in_U = ADC(Pin(10))  # Replace with the correct GPIO pin number
+analog_in_U.atten(ADC.ATTN_11DB)  # Adjust according to your board's ADC reference voltage
+analog_in_U.width(ADC.WIDTH_12BIT)
+
+analog_in_U2 = ADC(Pin(9))  # Replace with the correct GPIO pin number
+analog_in_U2.atten(ADC.ATTN_11DB)
+analog_in_U2.width(ADC.WIDTH_12BIT)
+
+R1 = 26930
+
+def get_voltage(adc):
+    return (adc.read() * 33) / 40950  # Adjust voltage reference if needed
+
+while True:
+    U = get_voltage(analog_in_U)
+    print("Tension U: ", U)
+    
+    U2 = get_voltage(analog_in_U2)
+    print("Tension U2: ", U2)
+    
+    U1 = U - U2
+    print("Tension U1: ", U1)
+    
+    if U1 != 0:
+        R2 = (U2 * R1) / (U - U2)
+        print("Résistance calculée: ", R2)
+    else:
+        print("Erreur")
+    
+    time.sleep(1)
+
