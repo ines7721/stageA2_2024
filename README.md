@@ -13,8 +13,8 @@
 Ce projet étudie la faisabilité d’un dispositif embarqué permettant la détection de variations de résistivité à l’aide de ponts diviseurs de tension et d’un micro-contrôleur Seeed Studio XIAO nRF52840.  
 Les données de résistivité sont acquises via le SAADC, traitées en temps réel, puis analysées à l’aide d’un algorithme Random Forest implémenté en MicroPython, afin de détecter la présence d’un composé cible : le DMMP.
 
-L’étude couvre :
-- l’architecture matérielle,
+Les tâches effectuées pour ce faire sont :
+- le prototypage et la mise en place de l’architecture matérielle,
 - l’acquisition et le traitement du signal,
 - l’implémentation de l’algorithme de classification,
 - les tests de précision, de fréquence d’échantillonnage, de mémoire et de temps de calcul.
@@ -104,7 +104,7 @@ Contraintes principales :
 Le projet démontre que la mesure de résistivité avec une bonne précision est réalisable sur le nRF52840.  
 En revanche, l’exécution embarquée prolongée d’un algorithme de classification de type Random Forest dépasse les capacités mémoire de la carte dans sa configuration actuelle.
 
-Des pistes d’amélioration incluent :
+Certaines pistes d’amélioration sont :
 - Externalisation du traitement
 - Simplification de l’algorithme de classification
 - Optimisation mémoire plus agressive
